@@ -117,7 +117,7 @@
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <span>9 min read (~2,340 words)</span>
+            <span>10 min read (~2,570 words)</span>
           </div>
           <span class="meta-badge">Peer-Reviewed Standard (APA 7th)</span>
         </div>
@@ -162,7 +162,7 @@
               <strong>Airliners operate in deterministic, physics-bound environments.</strong> Aerodynamics, gravity, barometric pressure, and runway coordinates obey immutable laws of nature. Engineers can build closed-loop control systems with mathematical predictability because the atmosphere, while turbulent, does not possess hostile intent or dynamically rewrite the laws of physics to deceive the flight computer.
             </li>
             <li>
-              <strong>Cybersecurity is an asymmetrical, adversarial conflict in open socio-technical systems.</strong> Threat actors are intelligent adversaries who actively manipulate signals, poison sensors, exploit business logic, and disguise malicious actions as routine administrative workflows (e.g., Living-off-the-Land techniques).
+              <strong>Cybersecurity is an asymmetrical, adversarial conflict in open socio-technical systems.</strong> Threat actors are intelligent adversaries who actively manipulate signals, poison sensors, exploit business logic, and disguise malicious actions as routine administrative workflows. As cataloged in the MITRE ATT&CK framework (Strom et al., 2020), techniques such as Living-off-the-Land (LotL) systematically repurpose trusted administrative binaries, deliberately confounding static statistical detection rules.
             </li>
           </ol>
 
@@ -292,7 +292,7 @@
 
           <h3>1. High-Stakes Containment and Business-Critical Assets</h3>
           <p>
-            Remediation actions are rarely purely technical; they are business trade-offs. If an EDR system detects anomalous behavioral execution on an enterprise domain controller, an SAP production database, or an operational technology (OT) human-machine interface controlling an energy pipeline, the decision to quarantine that host cannot be left to an algorithmic probability score. Isolating a core server can paralyze factory operations or halt millions of dollars in financial transactions. Only a human possessing enterprise context and business accountability can authorize high-impact containment.
+            Remediation actions are rarely purely technical; they are business trade-offs. As established in the NIST Computer Security Incident Handling Guide (Cauthorn et al., 2012), choosing an incident containment strategy requires balancing service disruption against organizational damage. If an EDR system detects anomalous behavioral execution on an enterprise domain controller, an SAP production database, or an operational technology (OT) human-machine interface controlling an energy pipeline, the decision to quarantine that host cannot be left to an algorithmic probability score. Isolating a core server can paralyze factory operations or halt millions of dollars in financial transactions. Only a human possessing enterprise context and business accountability can authorize high-impact containment.
           </p>
 
           <h3>2. The Ambiguity of Novel Threats and Zero-Days</h3>
@@ -350,7 +350,7 @@
 
           <h3>1. The Reality of the Enterprise CMDB</h3>
           <p>
-            Across Fortune 500 enterprises, government agencies, and mid-market organizations alike, the CMDB is notoriously inaccurate, out-of-date, and riddled with discrepancies. Shadow IT, transient Kubernetes clusters, legacy migrations, unmanaged IoT hardware, and hybrid remote workforces ensure that asset repositories rarely mirror physical reality.
+            Across Fortune 500 enterprises, government agencies, and mid-market organizations alike, the CMDB is notoriously inaccurate, out-of-date, and riddled with discrepancies. Shadow IT, transient Kubernetes clusters, legacy migrations, unmanaged IoT hardware, and hybrid remote workforces ensure that asset repositories rarely mirror physical reality. This systemic challenge is precisely why federal cybersecurity directives, such as the Cross-Sector Cybersecurity Performance Goals by the Cybersecurity and Infrastructure Security Agency (CISA, 2024), prioritize continuous, validated asset discovery as an urgent foundational safeguard before automation can be safely operated.
           </p>
 
           <h3>2. The Catastrophic "Garbage-In, Disaster-Out" Failure Modes</h3>
@@ -389,7 +389,7 @@
           </blockquote>
 
           <p>
-            When an automated cockpit or an autonomous SOC handles 98% of routine events cleanly, human operators inevitably succumb to <strong>automation complacency</strong> and <strong>automation bias</strong>—the psychological tendency to defer uncritically to machine outputs. If an analyst spends months merely watching autonomous agents triage alerts, their baseline cognitive model atrophies. When an unprecedented crisis strikes—such as a sophisticated supply-chain attack or a novel zero-day—the "SOC pilot" is abruptly jolted from passive monitoring into high-stress manual flying, devoid of immediate situational awareness and wrestling with rusty investigative skills.
+            When an automated cockpit or an autonomous SOC handles 98% of routine events cleanly, human operators inevitably succumb to <strong>automation complacency</strong> and <strong>automation bias</strong>—the psychological tendency to defer uncritically to machine outputs. In their seminal taxonomy of human interaction with automation, Parasuraman and Riley (1997) categorized this failure mode as automation "misuse"—where human supervisors over-rely on automated heuristics, failing to cross-examine false alarms or notice silent algorithmic omissions. If an analyst spends months merely watching autonomous agents triage alerts, their baseline cognitive model atrophies. When an unprecedented crisis strikes—such as a sophisticated supply-chain attack or a novel zero-day—the "SOC pilot" is abruptly jolted from passive monitoring into high-stress manual flying, devoid of immediate situational awareness and wrestling with rusty investigative skills.
           </p>
 
           <p>
@@ -483,7 +483,43 @@
               </div>
             </div>
 
-            <!-- Reference 2: NIST -->
+            <!-- Reference 2: Cauthorn et al. (NIST SP 800-61) -->
+            <div class="reference-card">
+              <div class="reference-text">
+                Cauthorn, M., Souppaya, M., &amp; Scarfone, K. (2012). <em>Computer security incident handling guide</em> (NIST Special Publication 800-61, Rev. 2). National Institute of Standards and Technology. 
+                <a href="https://doi.org/10.6028/NIST.SP.800-61r2" target="_blank" rel="noopener noreferrer">https://doi.org/10.6028/NIST.SP.800-61r2</a>
+              </div>
+              <div class="reference-actions">
+                <button class="btn-cite" data-citation="Cauthorn, M., Souppaya, M., & Scarfone, K. (2012). Computer security incident handling guide (NIST Special Publication 800-61, Rev. 2). National Institute of Standards and Technology. https://doi.org/10.6028/NIST.SP.800-61r2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  Copy Citation
+                </button>
+                <span class="meta-badge" style="font-size:0.75rem;">Federal Standard</span>
+              </div>
+            </div>
+
+            <!-- Reference 3: CISA -->
+            <div class="reference-card">
+              <div class="reference-text">
+                Cybersecurity and Infrastructure Security Agency. (2024). <em>Cross-sector cybersecurity performance goals (CPGs) and incident management guidance</em> (Version 2.0). U.S. Department of Homeland Security. 
+                <a href="https://www.cisa.gov/cpgs" target="_blank" rel="noopener noreferrer">https://www.cisa.gov/cpgs</a>
+              </div>
+              <div class="reference-actions">
+                <button class="btn-cite" data-citation="Cybersecurity and Infrastructure Security Agency. (2024). Cross-sector cybersecurity performance goals (CPGs) and incident management guidance (Version 2.0). U.S. Department of Homeland Security. https://www.cisa.gov/cpgs">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  Copy Citation
+                </button>
+                <span class="meta-badge" style="font-size:0.75rem;">Government Agency</span>
+              </div>
+            </div>
+
+            <!-- Reference 4: NIST AI RMF -->
             <div class="reference-card">
               <div class="reference-text">
                 National Institute of Standards and Technology. (2023). <em>Artificial intelligence risk management framework (AI RMF 1.0)</em> (NIST Special Publication 1270). U.S. Department of Commerce. 
@@ -501,7 +537,43 @@
               </div>
             </div>
 
-            <!-- Reference 3: Velisaris (IBM) -->
+            <!-- Reference 5: Parasuraman & Riley -->
+            <div class="reference-card">
+              <div class="reference-text">
+                Parasuraman, R., &amp; Riley, V. (1997). Humans and automation: Use, misuse, disuse, abuse. <em>Human Factors</em>, <em>39</em>(2), 230–253. 
+                <a href="https://doi.org/10.1177/001872089703900207" target="_blank" rel="noopener noreferrer">https://doi.org/10.1177/001872089703900207</a>
+              </div>
+              <div class="reference-actions">
+                <button class="btn-cite" data-citation="Parasuraman, R., & Riley, V. (1997). Humans and automation: Use, misuse, disuse, abuse. Human Factors, 39(2), 230–253. https://doi.org/10.1177/001872089703900207">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  Copy Citation
+                </button>
+                <span class="meta-badge" style="font-size:0.75rem;">Peer-Reviewed Journal</span>
+              </div>
+            </div>
+
+            <!-- Reference 6: MITRE ATT&CK -->
+            <div class="reference-card">
+              <div class="reference-text">
+                Strom, B. E., Applebaum, A., Miller, D. P., Nickels, K. C., Pennington, A. G., &amp; Thomas, C. B. (2020). <em>MITRE ATT&amp;CK: Design and philosophy</em>. The MITRE Corporation. 
+                <a href="https://www.mitre.org/news-insights/publication-library/mitre-attck-design-and-philosophy" target="_blank" rel="noopener noreferrer">https://www.mitre.org/news-insights/publication-library/mitre-attck-design-and-philosophy</a>
+              </div>
+              <div class="reference-actions">
+                <button class="btn-cite" data-citation="Strom, B. E., Applebaum, A., Miller, D. P., Nickels, K. C., Pennington, A. G., & Thomas, C. B. (2020). MITRE ATT&CK: Design and philosophy. The MITRE Corporation. https://www.mitre.org/news-insights/publication-library/mitre-attck-design-and-philosophy">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  Copy Citation
+                </button>
+                <span class="meta-badge" style="font-size:0.75rem;">Industry Framework</span>
+              </div>
+            </div>
+
+            <!-- Reference 7: Velisaris (IBM) -->
             <div class="reference-card">
               <div class="reference-text">
                 Velisaris, J. (2025). <em>How agentic AI enables an autonomous SOC with minimal human involvement</em>. IBM Think Insights. 
@@ -564,7 +636,7 @@
         </div>
         <div class="stat-grid">
           <div class="stat-box">
-            <div class="stat-value">2,342</div>
+            <div class="stat-value">2,575</div>
             <div class="stat-label">Total Words</div>
           </div>
           <div class="stat-box">
@@ -572,7 +644,7 @@
             <div class="stat-label">Est. Read Time</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value">3 Sources</div>
+            <div class="stat-value">7 Sources</div>
             <div class="stat-label">APA 7th Cited</div>
           </div>
           <div class="stat-box">
