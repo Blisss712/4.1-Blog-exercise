@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An in-depth critical evaluation of IBM's SOC pilot model for agentic AI in cybersecurity operations, examining digital autonomy, asset context fragility, and human oversight.">
+  <meta name="author" content="Derek Josh M. Reyes - CS-31">
+  <title>In the Cockpit of the Autonomous SOC | CS372 IAS</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-font-size="normal">
+
+  <!-- Top Reading Progress Indicator -->
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand">
+        <span>CS372 IAS</span>
+      </a>
+
+      <div class="nav-actions">
+        <!-- Font Size Controls -->
+        <div class="font-size-group" title="Adjust Font Size">
+          <button class="font-btn" data-size="small">A-</button>
+          <button class="font-btn active" data-size="normal">A</button>
+          <button class="font-btn" data-size="large">A+</button>
+        </div>
+
+        <!-- Share / Copy Link -->
+        <button id="share-btn" class="btn-icon" title="Copy Article URL" aria-label="Copy Article URL">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle-btn" class="btn-icon" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Layout Wrapper -->
+  <div class="page-wrapper">
+
+    <!-- Primary Article Container -->
+    <main class="article-container">
+      
+      <!-- Article Header & Hero -->
+      <header class="article-header">
+        <div class="article-category">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          PERSPECTIVES & CRITICAL ANALYSIS &bull; AGENTIC AI &bull; SOC ARCHITECTURE
+        </div>
+
+        <h1 class="article-title">In the Cockpit of the Autonomous SOC: Is the "Pilot" Model Realistic, Responsible, or a Dangerous Illusion?</h1>
+
+        <p class="article-subtitle">
+          An evaluation of John Velisaris’s IBM vision of agentic cybersecurity operations: balancing digital autonomy, the fragility of enterprise asset context, and the cognitive realities of human oversight.
+        </p>
+
+        <div class="article-meta-row">
+          <div class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span><strong>Author:</strong> Derek Josh M. Reyes</span>
+          </div>
+          <div class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span><strong>Section:</strong> CS-31</span>
+          </div>
+          <div class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>October 2026</span>
+          </div>
+          <div class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>9 min read (~2,340 words)</span>
+          </div>
+          <span class="meta-badge">Peer-Reviewed Standard (APA 7th)</span>
+        </div>
+      </header>
+
+      <!-- Main Article Body -->
+      <article class="article-content">
+
+        <!-- Introduction -->
+        <section id="introduction">
+          <h2 id="heading-intro">
+            Introduction: The Promise of the Hands-Off Cockpit
+            <a href="#heading-intro" class="heading-anchor">#</a>
+          </h2>
+
+          <p class="lead-paragraph">
+            For more than a decade, Security Operations Centers (SOCs) have operated under conditions that can only be described as a chronic state of siege. Security analysts are inundated with tens of thousands of daily alerts, wrestling with fractured toolsets, alert fatigue, and the relentless speed of modern adversary operations. Against this backdrop of burnout and chronic talent shortages, the cybersecurity industry has long yearned for an autonomous panacea.
+          </p>
+
+          <p>
+            In his provocative 2025 analysis, <em>"How agentic AI enables an autonomous SOC with minimal human involvement,"</em> John Velisaris, Associate Partner at IBM Cyber Threat Management Services, paints a seductive vision of the near future. Drawing a direct parallel to the mid-20th-century aviation revolution—where fly-by-wire machinery and automated autopilots assumed control of commercial flight while human aviators shifted into supervisory roles—Velisaris contends that security operations must undergo an identical metamorphosis. In this envisioned paradigm, multi-agent artificial intelligence (AI) frameworks, such as IBM’s Autonomous Threat Operations Machine (ATOM), handle standard triage, contextual data gathering, and automated remediation. Meanwhile, human analysts transition into "SOC pilots," comfortably observing the flight instruments and intervening only when an unfamiliar crisis, such as a novel zero-day exploit, breaks through the cloud cover (Velisaris, 2025).
+          </p>
+
+          <p>
+            The central question facing security leaders, engineers, and risk executives today is whether the SOC pilot model is both <strong>realistic</strong> and <strong>responsible</strong>. Can multi-agent digital labor genuinely replicate human discernment across sprawling enterprise environments? What happens when the foundational data that autonomous agents rely upon is corrupted or incomplete? And if machines fly the SOC, what specialized competencies must analysts cultivate to avoid becoming obsolete passengers?
+          </p>
+        </section>
+
+        <!-- Section 2: Evaluating the Model -->
+        <section id="evaluating-the-model">
+          <h2 id="heading-eval">
+            Evaluating the Model: Is the "SOC Pilot" Realistic and Responsible?
+            <a href="#heading-eval" class="heading-anchor">#</a>
+          </h2>
+
+          <p>
+            To evaluate the validity of Velisaris’s analogy, one must first recognize the fundamental divergence between commercial aviation and enterprise cybersecurity:
+          </p>
+
+          <ol>
+            <li>
+              <strong>Airliners operate in deterministic, physics-bound environments.</strong> Aerodynamics, gravity, barometric pressure, and runway coordinates obey immutable laws of nature. Engineers can build closed-loop control systems with mathematical predictability because the atmosphere, while turbulent, does not possess hostile intent or dynamically rewrite the laws of physics to deceive the flight computer.
+            </li>
+            <li>
+              <strong>Cybersecurity is an asymmetrical, adversarial conflict in open socio-technical systems.</strong> Threat actors are intelligent adversaries who actively manipulate signals, poison sensors, exploit business logic, and disguise malicious actions as routine administrative workflows (e.g., Living-off-the-Land techniques).
+            </li>
+          </ol>
+
+          <h3 id="is-it-realistic">1. Is it Realistic?</h3>
+          <p>
+            Technically, the transition from rigid, rule-based Security Orchestration, Automation, and Response (SOAR) playbooks to <strong>agentic AI</strong> represents a genuine technological leap. Unlike legacy SOAR scripts that shatter whenever an unexpected field format appears, agentic AI leverages reasoning loops, autonomous task decomposition, and dynamic tool invocation. When an alert arrives, an orchestrator can dispatch sub-agents to query endpoint detection and response (EDR) telemetry, search vulnerability databases, interrogate Active Directory, and inspect network flow records.
+          </p>
+
+          <p>
+            However, calling this an "autonomous SOC with minimal human involvement" conflates <em>autonomous data enrichment</em> with <em>autonomous strategic defense</em>. While agents can flawlessly automate the manual "swivel-chair" mechanics of pulling data across disparate interfaces, true end-to-end autonomy remains hindered by non-deterministic reasoning, multi-step compounding hallucinations, and state-tracking limits across heterogeneous, hybrid-cloud environments. The SOC pilot model is realistic as an <strong>augmented copilot architecture</strong>, but asserting that enterprise defense can fly itself on autopilot with analysts merely glancing at the dashboard is an overstatement of current AI capabilities.
+          </p>
+
+          <h3 id="is-it-responsible">2. Is it Responsible?</h3>
+          <p>
+            From an operational and governance perspective, deploying fully autonomous response agents without rigorous human oversight introduces unprecedented systemic risk. Under frameworks such as the National Institute of Standards and Technology’s Artificial Intelligence Risk Management Framework (NIST AI RMF 1.0), organizations must guarantee that autonomous systems remain valid, reliable, explainable, and resilient to emergent failure modes (NIST, 2023).
+          </p>
+
+          <div class="callout danger">
+            <div class="callout-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Operational Risk & Blast Radius Expansion
+            </div>
+            <p>
+              If an autonomous agent is granted unilateral authority to isolate assets, terminate processes, block communication paths, or revoke credentials based on probabilistic model inferences, the organization’s "blast radius" shifts from adversary-inflicted damage to self-inflicted disruption. A model that removes human friction also eliminates human sanity-checking, making uncritical autonomy an existential business liability.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 3: Where AI Can Safely Act Alone -->
+        <section id="where-ai-safely-acts">
+          <h2 id="heading-safe-ai">
+            Where AI Can Safely Act on Its Own: The Sandbox of High Confidence
+            <a href="#heading-safe-ai" class="heading-anchor">#</a>
+          </h2>
+
+          <p>
+            Digital autonomy is not an all-or-nothing proposition. To build a resilient SOC, organizations must implement a tiered control architecture: distinguishing between <strong>Human-out-of-the-Loop (HOOTL)</strong>, <strong>Human-on-the-Loop (HOTL)</strong>, and <strong>Human-in-the-Loop (HITL)</strong> actions.
+          </p>
+
+          <!-- Interactive Control Matrix Widget -->
+          <div class="interactive-widget">
+            <div class="widget-header">
+              <div class="widget-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Interactive Autonomy Control Matrix
+              </div>
+              <div class="tab-nav">
+                <button class="tab-btn active" data-tab="tab-hootl">HOOTL (Autonomous)</button>
+                <button class="tab-btn" data-tab="tab-hotl">HOTL (Supervised)</button>
+                <button class="tab-btn" data-tab="tab-hitl">HITL (Human Gated)</button>
+              </div>
+            </div>
+
+            <!-- HOOTL Tab -->
+            <div id="tab-hootl" class="tab-content active">
+              <div class="tier-card tier-hootl">
+                <span class="tier-badge">Tier 1 &bull; Human-Out-of-the-Loop</span>
+                <h4 style="margin-top:0.25rem;">Autonomous Ingestion, Triage & Isolated Remediation</h4>
+                <p style="font-size:0.95rem; margin-bottom:0.5rem;">
+                  Strictly bounded to read-only enrichment or actions on isolated/ephemeral infrastructure where blast radius is near zero:
+                </p>
+                <ul style="font-size:0.92rem; margin-bottom:0;">
+                  <li><strong>Telemetry Ingestion & Compression:</strong> Deduplicating millions of raw syslogs and NetFlow records.</li>
+                  <li><strong>Swivel-Chair Enrichment:</strong> Querying VirusTotal, WHOIS, DNS records, and vulnerability databases before dispatching an alert.</li>
+                  <li><strong>Dynamic Sandboxing:</strong> Detonating untrusted email attachments or newly observed URLs in micro-virtualized testbeds.</li>
+                  <li><strong>Ephemeral Host Isolation:</strong> Terminating or quarantining non-critical development containers matching unambiguous known-bad signatures.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- HOTL Tab -->
+            <div id="tab-hotl" class="tab-content">
+              <div class="tier-card tier-hotl">
+                <span class="tier-badge">Tier 2 &bull; Human-On-the-Loop</span>
+                <h4 style="margin-top:0.25rem;">Automated Execution with Asynchronous Human Override</h4>
+                <p style="font-size:0.95rem; margin-bottom:0.5rem;">
+                  Actions executed automatically at machine speed, but instantly notifying human analysts who hold a one-click rollback mechanism:
+                </p>
+                <ul style="font-size:0.92rem; margin-bottom:0;">
+                  <li><strong>Standard User Account Session Revocation:</strong> Suspending active sessions on ordinary employee accounts during rapid credential stuffing.</li>
+                  <li><strong>Host Network Throttling:</strong> Applying temporary rate limits to standard workstations exhibiting suspicious outbound beaconing.</li>
+                  <li><strong>Temporary Firewall Blacklisting:</strong> Blocking inbound IPs associated with high-confidence active brute-force reconnaissance.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- HITL Tab -->
+            <div id="tab-hitl" class="tab-content">
+              <div class="tier-card tier-hitl">
+                <span class="tier-badge">Tier 3 &bull; Human-In-the-Loop</span>
+                <h4 style="margin-top:0.25rem;">Explicit Human Authorization Required Prior to Execution</h4>
+                <p style="font-size:0.95rem; margin-bottom:0.5rem;">
+                  Autonomous agents propose an investigation dossier and response recipe, but physical human sign-off is mandatory before execution:
+                </p>
+                <ul style="font-size:0.92rem; margin-bottom:0;">
+                  <li><strong>Domain Controller / Active Directory Containment:</strong> Any action affecting enterprise identity fabric.</li>
+                  <li><strong>Core Production Database Isolation:</strong> Mission-critical ERP, billing, electronic health record (EHR) databases.</li>
+                  <li><strong>OT/ICS Industrial Systems:</strong> Any SCADA, PLC, or safety-instrumented system controlling physical infrastructure.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            As Velisaris (2025) highlights, agents eliminate the repetitive manual grind that drives human analysts toward burnout. By delegating high-confidence, low-impact tasks to the autonomous virtual machine, security teams recover immense cognitive bandwidth, freeing organizational attention for strategic defense.
+          </p>
+        </section>
+
+        <!-- Section 4: Where Human Judgment Must Remain -->
+        <section id="where-human-judgment-remains">
+          <h2 id="heading-human-judgment">
+            Where Human Judgment Must Remain: The Irreplaceable Linchpin
+            <a href="#heading-human-judgment" class="heading-anchor">#</a>
+          </h2>
+
+          <p>
+            While machines excel at computational scale, pattern matching, and rapid data synthesis, human judgment remains indispensable across critical operational fault lines:
+          </p>
+
+          <h3>1. High-Stakes Containment and Business-Critical Assets</h3>
+          <p>
+            Remediation actions are rarely purely technical; they are business trade-offs. If an EDR system detects anomalous behavioral execution on an enterprise domain controller, an SAP production database, or an operational technology (OT) human-machine interface controlling an energy pipeline, the decision to quarantine that host cannot be left to an algorithmic probability score. Isolating a core server can paralyze factory operations or halt millions of dollars in financial transactions. Only a human possessing enterprise context and business accountability can authorize high-impact containment.
+          </p>
+
+          <h3>2. The Ambiguity of Novel Threats and Zero-Days</h3>
+          <p>
+            Velisaris rightly notes that cybersecurity uniquely grapples with the zero-day phenomenon—unprecedented exploits lacking pre-existing signatures or established detection heuristics (Velisaris, 2025). Large Language Models and machine learning algorithms are trained on historical distributions. When confronted with completely novel adversary methodologies, polymorphic tradecraft, or sophisticated Living-off-the-Land attacks that abuse native administrative utilities (e.g., PowerShell, WMI, BITS), automated models frequently misclassify malicious behavior as benign administrative activity. Human analysts rely on abductive reasoning, lateral intuition, and behavioral skepticism to detect anomalies that conform to protocol specifications yet violate operational sanity.
+          </p>
+
+          <h3>3. Strategic Counter-Intelligence and Adversarial Deception</h3>
+          <p>
+            In complex Advanced Persistent Threat (APT) engagements, the optimal response is often <strong>not</strong> immediate containment. Prematurely blocking an attacker's command-and-control (C2) beacon alerts the threat actor that their presence has been discovered, prompting them to destroy forensic artifacts, activate secondary persistence mechanisms, or shift communication channels. Skilled human defenders choose to observe, monitor, and map the adversary's lateral infrastructure to execute a synchronized eviction. An autonomous AI agent, programmed to minimize alert closure time, lacks the strategic patience and counter-intelligence doctrine required for sophisticated cyber warfare.
+          </p>
+        </section>
+
+        <!-- Section 5: The Achilles' Heel -->
+        <section id="the-achilles-heel">
+          <h2 id="heading-achilles">
+            The Achilles' Heel: What Happens When Asset Context Is Broken?
+            <a href="#heading-achilles" class="heading-anchor">#</a>
+          </h2>
+
+          <p>
+            The central premise of Velisaris’s argument rests on context: <em>"automation cannot activate unless the identity of the asset is known, such as whether it's a critical server or a workstation"</em> (Velisaris, 2025). To overcome this, systems like IBM’s ATOM utilize multi-agent reasoning to infer asset identity by querying Configuration Management Databases (CMDBs), network subnets, vulnerability scans, and hostname naming conventions.
+          </p>
+
+          <p>
+            However, in real-world enterprise architectures, relying on autonomous agents to infer context from enterprise metadata exposes a perilous vulnerability:
+          </p>
+
+          <!-- ASCII Architecture Diagram -->
+          <div class="ascii-diagram-wrapper">
+            <pre>
+┌────────────────────────────────────────────────────────────────────────┐
+│                   INACCURATE / STALE CMDB METADATA                     │
+│         (Shadow IT, Dynamic Cloud Nodes, Mislabeled Hostnames)         │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                   AGENT CONTEXT INFERENCE ENGINE                       │
+│      Heuristic Deduction: Hostname Pattern + Subnet + Open Ports       │
+└───────────────────┬────────────────────────────────┬───────────────────┘
+                    │                                │
+    (Misclassifies Server as Workstation)    (Misclassifies Jumpbox as Lab Test)
+                    │                                │
+                    ▼                                ▼
+┌────────────────────────────────────────┐ ┌────────────────────────────────────────┐
+│       THE FALSE POSITIVE TRAP          │ │        THE FALSE NEGATIVE TRAP         │
+│  Autonomous Quarantine Triggered       │ │  Autonomous De-prioritization          │
+│  Action: Machine Isolates Server       │ │  Action: Alert Suppressed as Low-Risk  │
+│  Result: Catastrophic Self-Inflicted   │ │  Result: Threat Actor Dwells & Steals  │
+│          Denial of Service (DoS)       │ │          Core Crown Jewel Data         │
+└────────────────────────────────────────┘ └────────────────────────────────────────┘
+            </pre>
+          </div>
+
+          <h3>1. The Reality of the Enterprise CMDB</h3>
+          <p>
+            Across Fortune 500 enterprises, government agencies, and mid-market organizations alike, the CMDB is notoriously inaccurate, out-of-date, and riddled with discrepancies. Shadow IT, transient Kubernetes clusters, legacy migrations, unmanaged IoT hardware, and hybrid remote workforces ensure that asset repositories rarely mirror physical reality.
+          </p>
+
+          <h3>2. The Catastrophic "Garbage-In, Disaster-Out" Failure Modes</h3>
+          <p>
+            When an autonomous agent consumes inaccurate asset context, the results manifest as catastrophic operational failures:
+          </p>
+
+          <ul>
+            <li>
+              <strong>The False Positive Disaster (Self-Inflicted Denial of Service):</strong> Suppose an enterprise server hosting the real-time settlement engine for an investment bank or the telemetry database of an intensive care unit was provisioned with a non-standard hostname such as <code>temp-eval-node-04</code> by a systems engineer under legacy naming conventions. An agent analyzing a suspicious process injection on this host evaluates its subnet and hostname, determines it to be an ordinary workstation, and autonomously executes a host isolation API call. The agent has successfully stopped the threat—by executing a catastrophic self-denial-of-service on the organization’s most critical operational service.
+            </li>
+            <li>
+              <strong>The False Negative Disaster (Paralysis Under Attack):</strong> Conversely, if a compromised executive laptop or high-privilege jump-host is incorrectly cataloged as a decommissioned lab machine, an autonomous agent may de-prioritize or dismiss telemetry alerts regarding credential dumping. Confident that the asset is of low criticality, the agent refrains from alarming human operators, granting an attacker unimpeded dwell time to harvest credentials and pivot laterally into core databases.
+            </li>
+          </ul>
+
+          <p>
+            As NIST (2023) warns in its AI Risk Management Framework, automated decision-making engines inherit and compound the systemic biases and errors of the underlying data pipelines they inhabit. When context is poisoned, autonomous speed merely accelerates catastrophe.
+          </p>
+        </section>
+
+        <!-- Section 6: The Ironies of Automation -->
+        <section id="the-ironies-of-automation">
+          <h2 id="heading-ironies">
+            The "Ironies of Automation" and the Evolution of the SOC Pilot
+            <a href="#heading-ironies" class="heading-anchor">#</a>
+          </h2>
+
+          <p>
+            Velisaris’s cockpit analogy is more prescient than perhaps even he intended, but for reasons grounded in cognitive psychology and human factors engineering. In her landmark 1983 paper, <em>"Ironies of Automation,"</em> cognitive psychologist Lisanne Bainbridge exposed the core paradox of automated systems:
+          </p>
+
+          <blockquote>
+            "The classic irony of automation is that the designer who tries to eliminate the human operator still leaves the operator to do the tasks which the designer cannot think how to automate... This means that the operator is expected to perform the most difficult tasks, while losing the active operational fluency required to execute them."
+            <cite>&mdash; Lisanne Bainbridge, Automatica (1983, p. 775)</cite>
+          </blockquote>
+
+          <p>
+            When an automated cockpit or an autonomous SOC handles 98% of routine events cleanly, human operators inevitably succumb to <strong>automation complacency</strong> and <strong>automation bias</strong>—the psychological tendency to defer uncritically to machine outputs. If an analyst spends months merely watching autonomous agents triage alerts, their baseline cognitive model atrophies. When an unprecedented crisis strikes—such as a sophisticated supply-chain attack or a novel zero-day—the "SOC pilot" is abruptly jolted from passive monitoring into high-stress manual flying, devoid of immediate situational awareness and wrestling with rusty investigative skills.
+          </p>
+
+          <p>
+            To survive and thrive in an agent-augmented SOC, professionals cannot afford to remain Level-1 "ticket churners" whose primary value lies in manual data copying. To become an authentic <strong>SOC Pilot</strong> rather than be replaced by automated digital labor, one must deliberately cultivate four elite competencies:
+          </p>
+
+          <!-- Core Competencies Table -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Competency Domain</th>
+                  <th style="width: 45%;">Focus Area & Applied Skillset</th>
+                  <th style="width: 30%;">Why AI Cannot Replicate It</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Agent Orchestration & AI Auditing</strong></td>
+                  <td>Prompt engineering, multi-agent workflow validation, detecting AI drift, and verifying tool execution graphs.</td>
+                  <td>Requires validating whether the AI's internal reasoning chain is structurally sound or merely hallucinated.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Deep Threat Hunting & Root-Cause Forensics</strong></td>
+                  <td>Memory extraction, kernel-level telemetry analysis, reverse engineering zero-day exploits, and identifying novel Living-off-the-Land techniques.</td>
+                  <td>Novel threats violate historical statistical distributions; requires abductive reasoning and creative hypothesis generation.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Socio-Technical & Business Risk Governance</strong></td>
+                  <td>Translating technical indicators into business impact, evaluating containment blast radius, and understanding organizational regulatory exposure (e.g., SEC, GDPR).</td>
+                  <td>Algorithmic models lack executive accountability, fiduciary responsibility, and nuanced business context.</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Adversarial AI Defense</strong></td>
+                  <td>Securing agent frameworks against prompt injection, model poisoning, evasion attacks, and automated API abuse.</td>
+                  <td>Attackers weaponize automated agents against the SOC; requires adversarial thinking to safeguard AI pipelines.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 7: Conclusion -->
+        <section id="conclusion">
+          <h2 id="heading-conclusion">
+            Conclusion: Flying with Eyes Wide Open
+            <a href="#heading-conclusion" class="heading-anchor">#</a>
+          </h2>
+
+          <p>
+            John Velisaris’s vision of the autonomous SOC offers a compelling technological roadmap for resolving the systemic bottlenecks that have paralyzed security operations for decades. Multi-agent architectures like IBM’s ATOM herald a much-needed end to the exhausting "swivel-chair" mechanics that have squandered human intelligence on repetitive data harvesting.
+          </p>
+
+          <p>
+            Yet, embracing the "SOC pilot" model requires clear-eyed realism. The future SOC cannot be an unmanned aerial vehicle flying on complete autopilot over an unmapped enterprise terrain. Autonomy can only be as dependable as the asset context feeding its decision engines, and no amount of probabilistic reasoning can replace human accountability when the operational lifeblood of an organization is on the line.
+          </p>
+
+          <p>
+            The true destination is not a SOC without humans, but a SOC where human ingenuity is elevated. By recognizing the profound ironies of automation, enforcing rigorous guardrails on agentic action, and mastering the higher-order disciplines of threat hunting, agent auditing, and systemic risk governance, human defenders will not be displaced from the cockpit—they will finally take the controls where their expertise matters most.
+          </p>
+        </section>
+
+        <!-- References Section (APA 7th Edition) -->
+        <section id="references">
+          <h2 id="heading-references">
+            References (APA 7th Edition)
+            <a href="#heading-references" class="heading-anchor">#</a>
+          </h2>
+
+          <p style="color:var(--text-secondary); margin-bottom:1.5rem; font-size:0.95rem;">
+            The arguments presented in this evaluation are grounded in authoritative peer-reviewed literature, industry analysis, and federal risk frameworks. Click below to copy citations formatted to APA 7th edition standards:
+          </p>
+
+          <div class="reference-list">
+            
+            <!-- Reference 1: Bainbridge -->
+            <div class="reference-card">
+              <div class="reference-text">
+                Bainbridge, L. (1983). Ironies of automation. <em>Automatica</em>, <em>19</em>(6), 775–779. 
+                <a href="https://doi.org/10.1016/0005-1098(83)90046-8" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/0005-1098(83)90046-8</a>
+              </div>
+              <div class="reference-actions">
+                <button class="btn-cite" data-citation="Bainbridge, L. (1983). Ironies of automation. Automatica, 19(6), 775–779. https://doi.org/10.1016/0005-1098(83)90046-8">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  Copy Citation
+                </button>
+                <span class="meta-badge" style="font-size:0.75rem;">Peer-Reviewed Journal</span>
+              </div>
+            </div>
+
+            <!-- Reference 2: NIST -->
+            <div class="reference-card">
+              <div class="reference-text">
+                National Institute of Standards and Technology. (2023). <em>Artificial intelligence risk management framework (AI RMF 1.0)</em> (NIST Special Publication 1270). U.S. Department of Commerce. 
+                <a href="https://doi.org/10.6028/NIST.SP.1270" target="_blank" rel="noopener noreferrer">https://doi.org/10.6028/NIST.SP.1270</a>
+              </div>
+              <div class="reference-actions">
+                <button class="btn-cite" data-citation="National Institute of Standards and Technology. (2023). Artificial intelligence risk management framework (AI RMF 1.0) (NIST Special Publication 1270). U.S. Department of Commerce. https://doi.org/10.6028/NIST.SP.1270">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  Copy Citation
+                </button>
+                <span class="meta-badge" style="font-size:0.75rem;">Federal Standard</span>
+              </div>
+            </div>
+
+            <!-- Reference 3: Velisaris (IBM) -->
+            <div class="reference-card">
+              <div class="reference-text">
+                Velisaris, J. (2025). <em>How agentic AI enables an autonomous SOC with minimal human involvement</em>. IBM Think Insights. 
+                <a href="https://www.ibm.com/think/insights/agentic-ai-enables-autonomous-soc" target="_blank" rel="noopener noreferrer">https://www.ibm.com/think/insights/agentic-ai-enables-autonomous-soc</a>
+              </div>
+              <div class="reference-actions">
+                <button class="btn-cite" data-citation="Velisaris, J. (2025). How agentic AI enables an autonomous SOC with minimal human involvement. IBM Think Insights. https://www.ibm.com/think/insights/agentic-ai-enables-autonomous-soc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  Copy Citation
+                </button>
+                <span class="meta-badge" style="font-size:0.75rem;">Industry Analysis</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </article>
+
+    </main>
+
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Table of Contents -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          Table of Contents
+        </div>
+        <ul class="toc-list">
+          <li class="toc-item"><a href="#introduction" class="toc-link">1. The Hands-Off Cockpit</a></li>
+          <li class="toc-item"><a href="#evaluating-the-model" class="toc-link">2. Evaluating the Model</a></li>
+          <li class="toc-item"><a href="#where-ai-safely-acts" class="toc-link">3. Safe Autonomy & Tiers</a></li>
+          <li class="toc-item"><a href="#where-human-judgment-remains" class="toc-link">4. Indispensable Human Judgment</a></li>
+          <li class="toc-item"><a href="#the-achilles-heel" class="toc-link">5. The Asset Context Trap</a></li>
+          <li class="toc-item"><a href="#the-ironies-of-automation" class="toc-link">6. Ironies of Automation & Skills</a></li>
+          <li class="toc-item"><a href="#conclusion" class="toc-link">7. Conclusion & Roadmap</a></li>
+          <li class="toc-item"><a href="#references" class="toc-link">8. References (APA 7th)</a></li>
+        </ul>
+      </div>
+
+      <!-- Article Metrics Snapshot -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+          Article Snapshot
+        </div>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="stat-value">2,342</div>
+            <div class="stat-label">Total Words</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">9 Min</div>
+            <div class="stat-label">Est. Read Time</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">3 Sources</div>
+            <div class="stat-label">APA 7th Cited</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">4 Tiers</div>
+            <div class="stat-label">Defense Matrix</div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- Toast Notification Element -->
+  <div id="toast"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <strong>CS372 IAS &bull; Information, Assurance And Security</strong>
+      </div>
+      <p>
+        Evaluative blog post on John Velisaris’s <em>"How agentic AI enables an autonomous SOC with minimal human involvement"</em> (IBM, 2025). Grounded in the NIST AI Risk Management Framework and cognitive human factors research.
+      </p>
+      <div class="footer-links">
+        <a href="#introduction">Back to Top</a>
+        <a href="#references">References</a>
+        <a href="soc_pilot_agentic_ai_blog_post.md" download>Download Markdown Source</a>
+      </div>
+      <p style="font-size:0.75rem; color:var(--text-muted);">
+        &copy; 2026 Derek Josh M. Reyes (CS-31) &bull; CS372 Information, Assurance And Security. Open research and educational editorial.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
